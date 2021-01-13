@@ -1,0 +1,95 @@
+<div style="margin-top: 60px; margin-bottom: 15px">
+  <ngx-extended-pdf-viewer
+    id="pdfViewer"
+    [src]="pdfSrc"
+    #pdfViewer
+    [customToolbar]="additionalButtons"
+    [backgroundColor]="backgroundColor"
+    [showSidebarButton]="false"
+    [showFindButton]="true"
+    [showBorders]="false"
+    [showOpenFileButton]="false"
+    [showSpreadButton]="false"
+    [showHandToolButton]="false"
+    [showSecondaryToolbarButton]="false"
+    [showPresentationModeButton]="true"
+    [showRotateButton]="false"
+    [showBookmarkButton]="false"
+    [enablePinchOnMobile]="true"
+    [textLayer]="true"
+    [showPropertiesButton]="false"
+    (pagesLoaded)="onPagesLoaded($event)"
+    (pageChange)="onPagesChange($event)"
+    [height]="pdfHeight"></ngx-extended-pdf-viewer>
+</div>
+
+<div class="text-center margin-bottom-btn" *ngIf="viewButtons">
+  <button class="btn btn-secondary btn_aceptar px-4 me-4" (click)="onClickAceptar()">Aceptar</button>
+  <button class="btn btn-secondary btn_rechazar px-4">Rechazar</button>
+</div>
+
+<ng-template #additionalButtons>
+  <div id="toolbarViewer">
+    <div id="toolbarViewerLeft">
+      <pdf-toggle-sidebar></pdf-toggle-sidebar>
+      <pdf-find-button [showFindButton]="true" [textLayer]="true"></pdf-find-button>
+      <pdf-paging-area></pdf-paging-area>
+    </div>
+    <div id="toolbarViewerRight">
+      <pdf-print></pdf-print>
+      <pdf-presentation-mode></pdf-presentation-mode>
+      <div class="verticalToolbarSeparator hiddenSmallView"></div>
+      <pdf-toggle-secondary-toolbar></pdf-toggle-secondary-toolbar>
+    </div>
+    <pdf-zoom-toolbar ></pdf-zoom-toolbar>
+  </div>
+</ng-template>
+
+<ng-container #vc></ng-container>
+
+<ng-template #modal_1>
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="row">
+            <div class="col-md-12 col-sm-12 text-center">
+              <h4>
+                PIN de seguridad
+              </h4>
+            </div>
+            <div class="col-md-12 col-sm-12 mt-2 px-4 text-center lh-1">
+              <span>
+                Introduce el PIN de seguridad que te ha asignado el emisor del proceso
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-body text-center">
+          <div class="row">
+            <div class="col-md-12 col-sm-12">
+              <input #pin class="form-control pin" type="text" name="pin" maxlength="4" placeholder="____"
+                     (keyup.enter)="validatePin(pin.value)">
+            </div>
+            <div class="col-md-12 col-sm-12">
+              <img src="/assets/images/icon-candado.svg" alt="dec" width="60"/>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="row">
+            <div class="col-md-12 col-sm-12 px-3 text-center lh-1">
+              <span>
+                ¿No has recibido el PIN de seguridad? Contáctate con el emisor del proceso
+              </span>
+            </div>
+            <div class="col-md-12 col-sm-12">
+              <button type="button" class="btn btn-default" data-dismiss="modal" (click)="closeDialog()">Close </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+

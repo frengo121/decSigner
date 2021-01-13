@@ -1,0 +1,45 @@
+<nav class="navbar fixed-top navbar-light bg-light">
+  <div class="container-fluid mx-2">
+    <a class="navbar-brand"><span class="text-date">Vencimiento <span
+      class="text-proceso">del proceso</span>: {{today | date:'YYYY / MM / dd'}}</span></a>
+    <!--<div class="g-savetodrive"
+         data-src="//example.com/path/to/myfile.pdf"
+         data-filename="My Statement.pdf"
+         data-sitename="My Company Name"
+         data-gapiattached="true"
+    >
+    </div>-->
+    <div class="d-flex">
+      <div class="dropdown me-2 divAceptar" *ngIf="!dataService.btnAceptar">
+        <button class="btn btn-secondary background_turquoise px-3" type="button" (click)="onClickAceptar()">
+          Aceptar&nbsp;&nbsp;&nbsp;&nbsp;<img src="/assets/images/icon-check.svg" alt="dec" width="20"/>
+        </button>
+      </div>
+      <div class="dropdown me-2" *ngIf="dataService.btnAceptar">
+        <button class="btn btn-secondary background_turquoise px-3" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+          Firmar&nbsp;&nbsp;&nbsp;&nbsp;<img src="/assets/images/icon-check.svg" alt="dec" width="20"/>
+        </button>
+      </div>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle background_blue px-3" type="button"
+                id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+          Opciones&nbsp;&nbsp;&nbsp;&nbsp;
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <li><a class="dropdown-item text_opciones" href="#"><img src="/assets/images/icon-imprimir.svg" alt="dec"
+                                                                   width="20"/> Imprimir</a></li>
+          <li><a class="dropdown-item text_opciones" href="#"><img src="/assets/images/icon-descargar.svg" alt="dec"
+                                                                   width="20"/> Descargar</a></li>
+          <li><a class="dropdown-item text_opciones" href="#"><img src="/assets/images/icon-historial.svg" alt="dec"
+                                                                   width="20"/> Historial</a></li>
+          <li><a class="dropdown-item text_opciones" href="#"><img src="/assets/images/icon-exportar.svg" alt="dec"
+                                                                   width="20"/> Exportar</a></li>
+          <li><a class="dropdown-item text_opciones" href="#"><img src="/assets/images/icon-rechazar.svg" alt="dec"
+                                                                   width="20"/> Rechazar</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
